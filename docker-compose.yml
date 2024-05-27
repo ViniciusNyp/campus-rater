@@ -1,0 +1,44 @@
+services:
+  app:
+    build: .
+    ports:
+      - ${APP_PORT:-8000}:${APP_PORT:-8000}
+    depends_on:
+      - db
+    env_file:
+      - .env 
+    environment:
+      - DB_HOST=db 
+
+
+  db:
+    image: postgres:latest
+    ports:
+      - 5432:${DB_PORT:-5432}
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=${DB_NAME:-database} 
+      - POSTGRES_USER=${DB_USER:-admin}  
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-admin}
+    env_file:
+      - .env  
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  db_host:
+    image: postgres:latest
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=${DB_NAME:-database} 
+      - POSTGRES_USER=${DB_USER:-admin}  
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-admin}
+    env_file:
+      - .env  
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    network_mode: host
+    profiles:
+      - host
+      
+volumes:
+  db_data:

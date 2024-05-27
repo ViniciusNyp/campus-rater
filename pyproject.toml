@@ -10,8 +10,18 @@ package-mode = false
 python = "^3.10"
 fastapi = "^0.111.0"
 uvicorn = "^0.29.0"
+sqlalchemy = "^2.0.30"
+pydantic = "^2.7.1"
+pydantic-settings = "^2.2.1"
+alembic = "^1.13.1"
+psycopg2-binary = "^2.9.9"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pylint]
+ignored-modules = ["alembic.context", "alembic.op", "sqlalchemy.func"]
+ignore-paths= ["./app/db/migrations/versions/**"]
+suggestion-mode='yes'
