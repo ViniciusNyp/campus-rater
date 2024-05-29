@@ -1,8 +1,10 @@
-from pydantic import BaseModel, Field, EmailStr
+from pydantic import AliasChoices, BaseModel, EmailStr, Field
 
 
 class LoginInput(BaseModel):
-    username_or_email: str | EmailStr = Field()
+    username_or_email: str | EmailStr = Field(
+        validation_alias=AliasChoices("username", "email")
+    )
     password: str = Field()
 
 class AccessToken(BaseModel):

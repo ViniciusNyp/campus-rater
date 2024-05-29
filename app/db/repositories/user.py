@@ -1,7 +1,7 @@
 from sqlalchemy import or_
 from sqlalchemy.future import select
 
-from ...schemas.authentication import LoginInput
+from ...schemas.authentication import AccessTokenData, LoginInput
 from ...schemas.user import CreateUserInput
 from ..database import Session
 from ..models import User
@@ -32,3 +32,11 @@ async def get_user_by_username_or_email_and_password(
         result = await session.execute(query)
 
         return result.scalars().first()
+
+
+async def get_user_by_id(
+    user_id: int,
+) -> User:
+    async with Session() as session:
+        result = await session.get_one(User, user_id)
+        return result
