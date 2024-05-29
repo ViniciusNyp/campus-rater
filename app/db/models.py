@@ -22,6 +22,7 @@ class User(Base):
 
     user_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     username: Mapped[str] = mapped_column(String(50), unique=True)
+    full_name: Mapped[str] = mapped_column(String(500))
     email: Mapped[str] = mapped_column(String(250), unique=True)
     password: Mapped[str] = mapped_column(String(250))
     institution_id: Mapped[int] = mapped_column(

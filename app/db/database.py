@@ -1,8 +1,20 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
+from asyncio import current_task
+
+from sqlalchemy.ext.asyncio import (
+    async_scoped_session,
+    async_sessionmaker,
+    create_async_engine,
+)
 
 from ..config.environment import env
 
-engine = create_engine(env.DB_URL, echo=env.DEBUG)
+engine = create_async_engine(env.DB_URL, echo=env.DEBUG)
 
-Session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
+Session = async_scoped_session(
+    async_sessionmaker(
+        expire_on_commit=False,
+        autoflush=True,
+        bind=engine,
+    ),
+    current_task,
+)

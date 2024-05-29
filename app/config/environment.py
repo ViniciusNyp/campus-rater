@@ -1,4 +1,5 @@
 import logging
+from typing import ClassVar
 
 from pydantic import Field, computed_field
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -15,13 +16,16 @@ class Environment(BaseSettings):
     APP_PORT: int = Field(default=8000)
     ENVIRONMENT: str = Field(default="local")
     DEBUG: bool = Field(default=False)
+    ALGORITHM: str = Field(default="HS256")
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = Field(default=30)
+    SECRET_KEY: str = Field()
 
     @computed_field
     @property
     def DB_URL(self) -> str:
         return (
             self.DATABASE_URL
-            or f"postgresql://{self.DB_USER}:{self.DB_PASSWORD}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
+            or f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASSWORD}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
         )
 
 
