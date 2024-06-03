@@ -10,7 +10,9 @@ import json
 import os
 from typing import Sequence, Union
 
-from app.db.database import Session
+from alembic import op
+from sqlalchemy.sql import table
+
 from app.db.models import Institution
 
 # revision identifiers, used by Alembic.
@@ -25,17 +27,13 @@ file_path = os.path.join(os.path.dirname(__file__), "assets", "institution_seed.
 def upgrade() -> None:
     with open(file_path, "r", encoding="utf-8") as file:
         data = json.load(file)
-        
+
         institutions_to_add = []
         for item in data:
-            institutions_to_add.append(Institution(**item))
-            
-        with Session() as session:
-            session.add_all(institutions_to_add)
-            session.commit()
+            institutions_to_add.append(Institution(**item).__dict__)
+        Institution
+        op.bulk_insert(Institution.__table__, institutions_to_add)
 
 
 def downgrade() -> None:
-    with Session() as session:
-        session.query(Institution).delete()
-        session.commit()
+    op.execute(f"DELETE FROM {Institution.__tablename__}")
