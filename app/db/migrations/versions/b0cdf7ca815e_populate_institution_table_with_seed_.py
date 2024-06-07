@@ -11,7 +11,7 @@ import os
 from typing import Sequence, Union
 
 from alembic import op
-from sqlalchemy.sql import table
+from sqlalchemy.sql import delete
 
 from app.db.models import Institution
 
@@ -31,9 +31,9 @@ def upgrade() -> None:
         institutions_to_add = []
         for item in data:
             institutions_to_add.append(Institution(**item).__dict__)
-        Institution
-        op.bulk_insert(Institution.__table__, institutions_to_add)
+        op.bulk_insert(Institution.__table__, institutions_to_add)  # type: ignore[arg-type]
 
 
 def downgrade() -> None:
-    op.execute(f"DELETE FROM {Institution.__tablename__}")
+    query = delete(Institution).compile()
+    op.execute(str(query))
