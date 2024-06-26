@@ -1,18 +1,15 @@
 from typing import Annotated
 
 from fastapi import APIRouter, Depends
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi.security import OAuth2PasswordRequestForm
 
 from ...db.models import User
 from ...schemas.authentication import AccessToken, LoginInput
 from ...schemas.user import UserResponse
 from ...services.authentication import get_logged_user_by_token, login
+from ..dependencies.authentication import oauth2_scheme
 
 router = APIRouter()
-
-
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="authentication/token")
-
 
 @router.post("/token", response_model=AccessToken)
 async def login_for_token(input: Annotated[OAuth2PasswordRequestForm, Depends()]):

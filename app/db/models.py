@@ -1,6 +1,14 @@
 from datetime import datetime
 
-from sqlalchemy import DateTime, ForeignKey, Integer, String, UniqueConstraint, func
+from sqlalchemy import (
+    Boolean,
+    DateTime,
+    ForeignKey,
+    Integer,
+    String,
+    UniqueConstraint,
+    func,
+)
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
@@ -41,6 +49,7 @@ class Review(Base):
     institution_id: Mapped[int] = mapped_column(
         ForeignKey("institution.institution_id")
     )
+    private: Mapped[bool] = mapped_column(Boolean(), default=False)
 
 
 class Institution(Base):
