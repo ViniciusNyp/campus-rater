@@ -49,7 +49,7 @@ def upgrade() -> None:
     sa.Column('review_id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('title', sa.String(length=50), nullable=False),
     sa.Column('content', sa.String(length=250), nullable=False),
-    sa.Column('rating', sa.Integer(), nullable=False),
+    sa.Column('rating', sa.Float(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('institution_id', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),

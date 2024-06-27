@@ -1,4 +1,6 @@
 from datetime import datetime
+from functools import reduce
+from statistics import mean
 
 from sqlalchemy import (
     Boolean,
@@ -8,8 +10,10 @@ from sqlalchemy import (
     String,
     UniqueConstraint,
     func,
+    select,
 )
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 
 class Base(DeclarativeBase):
@@ -44,12 +48,13 @@ class Review(Base):
     review_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     title: Mapped[str] = mapped_column(String(50))
     content: Mapped[str] = mapped_column(String(250))
-    rating: Mapped[int] = mapped_column(Integer())
+    rating: Mapped[float] = mapped_column(Integer())
     user_id: Mapped[int] = mapped_column(ForeignKey("user.user_id"))
     institution_id: Mapped[int] = mapped_column(
         ForeignKey("institution.institution_id")
     )
     private: Mapped[bool] = mapped_column(Boolean(), default=False)
+    institution: Mapped["Institution"] = relationship(back_populates="reviews")
 
 
 class Institution(Base):
@@ -59,3 +64,10 @@ class Institution(Base):
     name: Mapped[str] = mapped_column(String(500))
     abbrev: Mapped[str | None] = mapped_column(String(50), nullable=True)
     code: Mapped[int] = mapped_column(Integer(), unique=True)
+    reviews: Mapped[list["Review"]] = relationship(
+        back_populates="institution", lazy="selectin"
+    )
+
+    @hybrid_property
+    def average_rating(self):
+        return mean(map(lambda item: item.rating, self.reviews))
