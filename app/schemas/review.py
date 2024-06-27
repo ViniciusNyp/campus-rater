@@ -1,3 +1,5 @@
+from typing import Literal, Optional
+
 from pydantic import BaseModel, Field
 
 
@@ -17,3 +19,16 @@ class ReviewResponse(BaseModel):
     private: bool | None = Field()
     user_id: int = Field()
     institution_id: int = Field()
+
+
+class FetchReviewsParams(BaseModel):
+    review_id: Optional[int] = Field(default=None)
+    title: Optional[str] = Field(default=None)
+    user_id: Optional[int] = Field(default=None)
+    institution_id: Optional[int] = Field(default=None)
+    rating_order: Literal["desc", "asc", None] = Field(
+        default=None,
+    )
+    time_order: Literal["desc", "asc", None] = Field(
+        default="desc",
+    )
