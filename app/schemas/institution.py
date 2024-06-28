@@ -8,7 +8,7 @@ class InstitutionResponse(BaseModel):
     name: str = Field()
     abbrev: str | None = Field()
     code: int = Field()
-    average_rating: float = Field()
+    average_rating: float | None = Field()
 
 
 class FetchInstitutionsParams(BaseModel):

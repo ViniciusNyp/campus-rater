@@ -32,12 +32,12 @@ async def fetch_institutions(
         .limit(paginationParams.limit)
     )
 
-    # if fetchInstitutionsParams.rating_order is not None:
-    #     query = query.order_by(
-    #         Institution.average_rating.desc()
-    #         if fetchInstitutionsParams.rating_order == "desc"
-    #         else Institution.average_rating.asc()
-    #     )
+    if fetchInstitutionsParams.rating_order is not None:
+        query = query.order_by(
+            Institution.average_rating.desc().nulls_last()
+            if fetchInstitutionsParams.rating_order == "desc"
+            else Institution.average_rating.asc().nulls_last()
+        )
 
     async with Session() as session:
         result = await session.execute(query)

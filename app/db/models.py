@@ -7,6 +7,7 @@ from sqlalchemy import (
     DateTime,
     ForeignKey,
     Integer,
+    SQLColumnExpression,
     String,
     UniqueConstraint,
     func,
@@ -69,5 +70,18 @@ class Institution(Base):
     )
 
     @hybrid_property
-    def average_rating(self):
-        return mean(map(lambda item: item.rating, self.reviews))
+    def average_rating(self) -> float | None:
+        return (
+            mean(map(lambda item: item.rating, self.reviews))
+            if len(self.reviews) is not 0
+            else None
+        )
+
+    @average_rating.inplace.expression
+    @classmethod
+    def _average_rating_expression(cls) -> SQLColumnExpression[float]:
+        return (
+            select(func.avg(Review.rating))
+            .where(Review.institution_id == cls.institution_id)
+            .label("average_rating")
+        )
