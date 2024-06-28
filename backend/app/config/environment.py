@@ -1,5 +1,5 @@
 import logging
-from typing import ClassVar
+from typing import Literal
 
 from pydantic import Field, computed_field
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -14,7 +14,7 @@ class Environment(BaseSettings):
     DB_PASSWORD: str = Field(default="admin")
     DB_NAME: str = Field(default="database")
     APP_PORT: int = Field(default=8000)
-    ENVIRONMENT: str = Field(default="local")
+    ENVIRONMENT: Literal["local", "dev", "prod"] = Field(default="local")
     DEBUG: bool = Field(default=False)
     ALGORITHM: str = Field(default="HS256")
     ACCESS_TOKEN_EXPIRE_MINUTES: int = Field(default=30)
