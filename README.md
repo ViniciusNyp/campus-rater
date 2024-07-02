@@ -11,8 +11,6 @@ Welcome to Campus Rater! Campus Rater is a forum-like community-driven education
 ## Getting Started
  Just follow the [Back-End README](./backend/README.md) or the [Front-End README](./frontend/README.md)
 
-Sure, here is the tech stack as a comma-separated list with the respective links:
-
 ## Tech Stack
 
 - **Back-End**: [Python](https://www.python.org/), [FastAPI](https://fastapi.tiangolo.com/), [Uvicorn](https://www.uvicorn.org/), [SQLAlchemy](https://www.sqlalchemy.org/), [Pydantic](https://pydantic-docs.helpmanual.io/), [Alembic](https://alembic.sqlalchemy.org/), [Passlib](https://passlib.readthedocs.io/), [PyJWT](https://pyjwt.readthedocs.io/), [bcrypt](https://pypi.org/project/bcrypt/), [asyncpg](https://magicstack.github.io/asyncpg/), [asyncio](https://docs.python.org/3/library/asyncio.html), [pylint](https://pylint.pycqa.org/), [mypy](http://mypy-lang.org/), [isort](https://pycqa.github.io/isort/), [black](https://black.readthedocs.io/).
