@@ -4,7 +4,7 @@ Welcome to Campus Rater! Campus Rater is a forum-like community-driven education
 
 ## Features
 
-- **Education Institution Rating**: Rate and review universities and colleges.
+- **Education Institution and Professors Rating**: Rate and review universities, colleges, and professors.
 - **Community Interaction**: Discuss with students, professors, and other education-related individuals.
 - **Knowledge Sharing**: Share resources, ask questions, and provide answers to foster a collaborative educational environment.
 
