@@ -1,4 +1,6 @@
-# Campus Rater
+![CAMPUS RATER 2 (copy)](https://github.com/ViniciusNyp/campus-rater/assets/88608411/e66f3b2e-e8fc-4ae7-9570-e11cbd725ff2)
+
+----
 
 Welcome to Campus Rater! Campus Rater is a forum-like community-driven education/university-focused application where students, professors, and related individuals can interact and share knowledge. The main feature of Campus Rater is the rating of educational institutions. Still, the goal is to evolve into a full-fledged educational community platform similar to Reddit, where everyone can collaborate, share knowledge, and help each other.
 
