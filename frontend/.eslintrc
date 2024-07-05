@@ -24,13 +24,13 @@
   },
   "plugins": ["unused-imports", "react", "@typescript-eslint", "import", "prettier"],
   "rules": {
-    "import/default": 0,
-    "import/no-named-as-default-member": 0,
-    "import/no-unresolved": "warn",
-    "no-unused-vars": "off", // or "@typescript-eslint/no-unused-vars": "off",
-    "react/react-in-jsx-scope": "off",
-    "@typescript-eslint/ban-ts-comment": "off",
-    "unused-imports/no-unused-imports": "warn",
-    "react/prop-types": "off"
+		"import/default": 0,
+		"import/no-named-as-default-member": 0,
+		"import/no-unresolved": "off",
+		"no-unused-vars": "off", // or "@typescript-eslint/no-unused-vars": "off",
+		"react/react-in-jsx-scope": "off",
+		"@typescript-eslint/ban-ts-comment": "off",
+		"unused-imports/no-unused-imports": "warn",
+		"react/prop-types": "off"
   }
 }

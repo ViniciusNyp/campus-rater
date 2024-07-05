@@ -11,6 +11,7 @@ Welcome to Campus Rater! Campus Rater is a forum-like community-driven education
 - **Knowledge Sharing**: Share resources, ask questions, and provide answers to foster a collaborative educational environment.
 
 ## Getting Started
+
  Just follow the [Back-End README](./backend/README.md) or the [Front-End README](./frontend/README.md)
 
 ## Tech Stack

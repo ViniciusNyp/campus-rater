@@ -1,20 +1,37 @@
-import { createHashRouter, RouteObject } from 'react-router-dom';
+import { ReactElement } from 'react';
+import { createHashRouter } from 'react-router-dom';
 import ErrorPage from './components/error-page';
-import { getDefaultLayout } from './components/layout';
-import HomePage from './pages/home';
+import { getAuthenticatedLayout, getUnauthenticatedLayout } from './components/layout';
+import { HomePage } from './pages/home';
+import { LoginPage } from './pages/login';
+import { SignUpPage } from './pages/signup';
 
-export const routerObjects: RouteObject[] = [
+export const routerObjects: {
+	path: string;
+	Component: () => JSX.Element;
+	getLayout?: (page: React.ReactElement) => ReactElement;
+}[] = [
 	{
-		path: '/',
+		path: '',
 		Component: HomePage,
+	},
+	{
+		path: 'login',
+		Component: LoginPage,
+		getLayout: getUnauthenticatedLayout,
+	},
+	{
+		path: 'signup',
+		Component: SignUpPage,
+		getLayout: getUnauthenticatedLayout,
 	},
 ];
 
 export function createRouter(): ReturnType<typeof createHashRouter> {
 	const routeWrappers = routerObjects.map((router) => {
 		// @ts-ignore TODO: better type support
-		const getLayout = router.Component?.getLayout || getDefaultLayout;
-		const Component = router.Component!;
+		const getLayout = router?.getLayout || getAuthenticatedLayout;
+		const Component = router.Component;
 		const page = getLayout(<Component />);
 		return {
 			...router,

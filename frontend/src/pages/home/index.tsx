@@ -1,11 +1,6 @@
-import { Helmet } from 'react-helmet';
 import { useTranslation } from 'react-i18next';
 
-export default function Home() {
+export function HomePage() {
 	const { t } = useTranslation('translation');
-	return (
-		<>
-			<Helmet></Helmet>
-		</>
-	);
+	return <></>;
 }
