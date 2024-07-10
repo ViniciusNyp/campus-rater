@@ -13,7 +13,8 @@ export const routerObjects: {
 }[] = [
 	{
 		path: '',
-		Component: HomePage,
+		Component: LoginPage,
+		getLayout: getUnauthenticatedLayout,
 	},
 	{
 		path: 'login',
@@ -24,6 +25,11 @@ export const routerObjects: {
 		path: 'signup',
 		Component: SignUpPage,
 		getLayout: getUnauthenticatedLayout,
+	},
+	{
+		path: 'home',
+		Component: HomePage,
+		getLayout: getAuthenticatedLayout,
 	},
 ];
 

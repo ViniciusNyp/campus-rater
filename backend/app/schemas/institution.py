@@ -13,8 +13,7 @@ class InstitutionResponse(BaseModel):
 
 class FetchInstitutionsParams(BaseModel):
     institution_id: Optional[int] = Field(default=None)
-    name: Optional[str] = Field(default=None)
-    abbrev: Optional[str] = Field(default=None)
+    name_or_abbrev: Optional[str] = Field(default=None)
     code: Optional[int] = Field(default=None)
     rating_order: Literal["desc", "asc", None] = Field(
         default=None,

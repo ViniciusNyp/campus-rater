@@ -1,3 +1,5 @@
+import { JWTPayload } from 'jose';
+
 export type SignUpInput = {
 	full_name: string;
 	username: string;
@@ -5,12 +7,14 @@ export type SignUpInput = {
 	password: string;
 };
 
-export type SignUpResponse = {
+export type UserData = {
 	full_name: string;
 	username: string;
 	email: string;
 	user_id: number;
 };
+
+export type TokenData = UserData & JWTPayload;
 
 export type LoginInput = {
 	username: string;

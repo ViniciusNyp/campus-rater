@@ -1,5 +1,5 @@
 from typing import Literal, Optional
-
+from datetime import datetime
 from pydantic import BaseModel, Field
 
 
@@ -19,6 +19,8 @@ class ReviewResponse(BaseModel):
     private: bool | None = Field()
     user_id: int = Field()
     institution_id: int = Field()
+    created_at: datetime = Field()
+    updated_at: datetime = Field()
 
 
 class FetchReviewsParams(BaseModel):

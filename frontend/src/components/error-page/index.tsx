@@ -15,7 +15,7 @@ export default function ErrorPage() {
 				<i>{error?.statusText || error?.message}</i>
 			</p>
 			<Button asChild>
-				<Link to="/">{t('backtohomepage')}</Link>
+				<Link to="/home">{t('backtohomepage')}</Link>
 			</Button>
 		</div>
 	);

@@ -12,6 +12,7 @@ from sqlalchemy import (
     UniqueConstraint,
     func,
     select,
+    Text
 )
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
@@ -48,7 +49,7 @@ class Review(Base):
 
     review_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     title: Mapped[str] = mapped_column(String(50))
-    content: Mapped[str] = mapped_column(String(250))
+    content: Mapped[str] = mapped_column(Text())
     rating: Mapped[float] = mapped_column(Integer())
     user_id: Mapped[int] = mapped_column(ForeignKey("user.user_id"))
     institution_id: Mapped[int] = mapped_column(

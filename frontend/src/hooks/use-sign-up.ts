@@ -2,11 +2,11 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError, AxiosResponse } from 'axios';
 import { useToast } from 'src/components/ui/use-toast';
 import { serverApi } from 'src/config/server';
-import { SignUpInput, SignUpResponse } from 'src/domain/auth';
+import { SignUpInput, UserData } from 'src/domain/auth';
 import { useLogin } from './use-login';
 
 async function signUp(input: SignUpInput) {
-	return await serverApi.post<SignUpResponse>('user', input, {});
+	return await serverApi.post<UserData>('user', input, {});
 }
 
 export function useSignUp() {
@@ -15,7 +15,7 @@ export function useSignUp() {
 	const loginMutation = useLogin();
 
 	const { mutate: signUpMutation } = useMutation<
-		AxiosResponse<SignUpResponse>,
+		AxiosResponse<UserData>,
 		AxiosError<{ detail?: string }>,
 		SignUpInput,
 		unknown

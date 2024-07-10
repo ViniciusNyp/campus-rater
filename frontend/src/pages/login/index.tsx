@@ -2,10 +2,12 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useLogin } from 'src/hooks/use-login';
+import { useAuth } from 'src/providers/auth';
 
 import { z } from 'zod';
 
@@ -16,6 +18,8 @@ const loginFormSchema = z.object({
 
 export function LoginPage() {
 	const { t } = useTranslation('translation');
+	const navigate = useNavigate();
+	const { token } = useAuth();
 	const loginMutation = useLogin();
 	const loginForm = useForm<z.infer<typeof loginFormSchema>>({
 		resolver: zodResolver(loginFormSchema),
@@ -26,6 +30,12 @@ export function LoginPage() {
 	});
 
 	const onSubmit = (values: z.infer<typeof loginFormSchema>) => loginMutation(values);
+
+	useEffect(() => {
+		if (token) {
+			navigate('/home');
+		}
+	}, [navigate, token]);
 
 	return (
 		<div className="w-full h-screen lg:grid lg:grid-cols-2">

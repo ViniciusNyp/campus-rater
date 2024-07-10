@@ -1,12 +1,14 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from 'src/components/ui/form';
 import { useSignUp } from 'src/hooks/use-sign-up';
+import { useAuth } from 'src/providers/auth';
 import { z } from 'zod';
 
 const signUpFormSchema = z.object({
@@ -34,6 +36,14 @@ export function SignUpPage() {
 	});
 
 	const onSubmit = (values: z.infer<typeof signUpFormSchema>) => signUpMutation(values);
+
+	const navigate = useNavigate();
+	const { token } = useAuth();
+	useEffect(() => {
+		if (token) {
+			navigate('/home');
+		}
+	}, [navigate, token]);
 
 	return (
 		<div className="w-full h-screen lg:grid lg:grid-cols-2">

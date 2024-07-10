@@ -1,12 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-type UseLocalStorageStateHook<T> = [T, React.Dispatch<React.SetStateAction<T>>];
+type UseLocalStorageStateHook = [string | null, React.Dispatch<React.SetStateAction<string | null>>];
 
-function useLocalStorageState<T>(key: string, initialValue: T): UseLocalStorageStateHook<T> {
-	const [state, setState] = useState<T>(() => {
+function useLocalStorageState(key: string, initialValue: string | null): UseLocalStorageStateHook {
+	const [state, setState] = useState(() => {
 		try {
-			const item = localStorage.getItem(key);
-			return item ? JSON.parse(item) : initialValue;
+			return localStorage.getItem(key);
 		} catch (error) {
 			console.error(`Unable to get value from localStorage for key "${key}":`, error);
 			return initialValue;
@@ -15,7 +14,7 @@ function useLocalStorageState<T>(key: string, initialValue: T): UseLocalStorageS
 
 	useEffect(() => {
 		try {
-			localStorage.setItem(key, JSON.stringify(state));
+			state ? localStorage.setItem(key, state) : localStorage.removeItem(key);
 		} catch (error) {
 			console.error(`Unable to set value to localStorage for key "${key}":`, error);
 		}

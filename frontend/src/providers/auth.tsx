@@ -1,31 +1,32 @@
-import { JwtPayload } from 'jsonwebtoken';
-import { Dispatch, SetStateAction, createContext, useContext, useEffect, useMemo } from 'react';
+import { decodeJwt } from 'jose';
+import { createContext, Dispatch, SetStateAction, useContext, useEffect, useMemo } from 'react';
 import { serverApi } from 'src/config/server';
+import { TokenData } from 'src/domain/auth';
 import useLocalStorageState from 'src/hooks/use-localstorage-state';
 
 const AuthContext = createContext<{
-	token?: string | null;
-	decodedToken?: JwtPayload | null;
+	token: string | null;
+	decodedToken: TokenData | null;
 	setToken: Dispatch<SetStateAction<string | null>>;
 }>({} as any);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-	const [token, setToken] = useLocalStorageState<string | null>('token', null);
+	const [token, setToken] = useLocalStorageState('token', null);
 
 	useEffect(() => {
 		if (token) {
 			serverApi.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-			localStorage.setItem('token', token);
+			setToken(token);
 		} else {
 			delete serverApi.defaults.headers.common['Authorization'];
-			localStorage.removeItem('token');
+			setToken(null);
 		}
-	}, [token]);
+	}, [setToken, token]);
 
 	const contextValue = useMemo(
 		() => ({
 			token,
-			//decodedToken: token ? decode(token, { json: true }) : null,
+			decodedToken: token ? decodeJwt<TokenData>(token) : null,
 			setToken,
 		}),
 		[setToken, token],
