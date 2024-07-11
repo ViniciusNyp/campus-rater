@@ -1,11 +1,12 @@
 {
-	"name": "vite-react-tailwind-starter",
+	"name": "campus-rate",
+	"author": "Vinícius Cristino <viniciusnypbarbosa@outlook.com>",
 	"private": true,
 	"version": "0.0.0",
 	"scripts": {
 		"prepare": "cd .. && husky install frontend/.husky",
 		"dev": "vite",
-		"build": "npm run typecheck && vite build",
+		"build": "pnpm run typecheck && vite build",
 		"typecheck": "tsc --noEmit",
 		"typecheck:watch": "tsc --noEmit --watch",
 		"lint": "eslint --quiet src --ext .ts,.tsx && stylelint src/**/*.less",
@@ -51,6 +52,7 @@
 		"clsx": "^2.0.0",
 		"cmdk": "^1.0.0",
 		"date-fns": "^3.6.0",
+		"debounce": "^2.1.0",
 		"dotenv": "^16.4.5",
 		"embla-carousel-react": "^8.1.6",
 		"i18next": "^23.5.1",
@@ -113,6 +115,7 @@
 		"typescript": "^5.3.3",
 		"vite": "^4.2.0",
 		"vite-plugin-external": "^1.2.8",
-		"vite-plugin-svgr": "^2.4.0"
+		"vite-plugin-svgr": "^2.4.0",
+		"@types/debounce": "^1.2.4"
 	}
 }

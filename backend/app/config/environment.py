@@ -19,6 +19,8 @@ class Environment(BaseSettings):
     ALGORITHM: str = Field(default="HS256")
     ACCESS_TOKEN_EXPIRE_MINUTES: int = Field(default=30)
     SECRET_KEY: str = Field()
+    CLIENT_HOST: str = Field(default="localhost")
+    CLIENT_PORT: int = Field(default=5000)
 
     @computed_field
     @property
