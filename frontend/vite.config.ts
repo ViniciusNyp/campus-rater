@@ -1,33 +1,37 @@
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import svgr from 'vite-plugin-svgr';
-import { env } from './src/config/env.schema';
 
 // https://vitejs.dev/config/
-export default defineConfig({
-	base: './',
-	plugins: [
-		svgr({
-			exportAsDefault: true,
-		}),
-		react(),
-	],
-	resolve: {
-		alias: {
-			src: path.resolve(__dirname, './src'),
-			'@': path.resolve(__dirname, './src'),
+export default ({ mode }) => {
+	return defineConfig({
+		define: {
+			'process.env': loadEnv(mode, process.cwd(), ''),
 		},
-	},
-	css: {
-		preprocessorOptions: {
-			less: {
-				javascriptEnabled: true,
+		publicDir: './public',
+		base: './',
+		plugins: [
+			svgr({
+				exportAsDefault: true,
+			}),
+			react(),
+		],
+		resolve: {
+			alias: {
+				src: path.resolve(__dirname, './src'),
+				'@': path.resolve(__dirname, './src'),
 			},
 		},
-	},
-	server: {
-		host: true,
-		port: env.APP_PORT,
-	},
-});
+		css: {
+			preprocessorOptions: {
+				less: {
+					javascriptEnabled: true,
+				},
+			},
+		},
+		server: {
+			host: true,
+		},
+	});
+};

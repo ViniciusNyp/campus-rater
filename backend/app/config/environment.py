@@ -13,7 +13,7 @@ class Environment(BaseSettings):
     DB_USER: str = Field(default="admin")
     DB_PASSWORD: str = Field(default="admin")
     DB_NAME: str = Field(default="database")
-    APP_PORT: int = Field(default=8000)
+    SERVER_PORT: int = Field(default=8000)
     ENVIRONMENT: Literal["local", "dev", "prod"] = Field(default="local")
     DEBUG: bool = Field(default=False)
     ALGORITHM: str = Field(default="HS256")

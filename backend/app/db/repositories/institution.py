@@ -8,6 +8,10 @@ from sqlalchemy.future import select
 from ..database import Session
 from ..models import Institution
 
+from sqlalchemy.sql.functions import ReturnTypeFromArgs
+
+class unaccent(ReturnTypeFromArgs):
+    pass
 
 async def fetch_institutions(
     fetchInstitutionsParams: FetchInstitutionsParams, paginationParams: PaginationParams
@@ -20,8 +24,8 @@ async def fetch_institutions(
     if fetchInstitutionsParams.name_or_abbrev is not None:
         filters.append(
             or_(
-                Institution.abbrev.ilike(f"%{fetchInstitutionsParams.name_or_abbrev}%"),
-                Institution.name.ilike(f"%{fetchInstitutionsParams.name_or_abbrev}%"),
+                unaccent(Institution.abbrev).ilike(unaccent(f"%{fetchInstitutionsParams.name_or_abbrev}%")),
+                unaccent(Institution.name).ilike(unaccent(f"%{fetchInstitutionsParams.name_or_abbrev}%")),
             )
         )
     if fetchInstitutionsParams.code is not None:

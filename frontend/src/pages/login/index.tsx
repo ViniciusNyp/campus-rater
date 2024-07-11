@@ -41,7 +41,7 @@ export function LoginPage() {
 		<div className="w-full h-screen lg:grid lg:grid-cols-2">
 			<div className="flex flex-col items-center justify-center h-full py-12">
 				<img
-					src="../../../public/logo.svg"
+					src="/logo.svg"
 					alt="Campus Rater Icon"
 					className="absolute top-0 left-0 p-4 max-h-28"
 				/>
@@ -100,7 +100,7 @@ export function LoginPage() {
 			</div>
 			<div className="hidden bg-muted lg:block">
 				<img
-					src="../../../public/cover.jpeg"
+					src="cover.jpeg"
 					alt="Campus Rater cover image, displaying a campus with students"
 					className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
 				/>
