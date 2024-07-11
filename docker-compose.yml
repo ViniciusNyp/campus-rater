@@ -3,6 +3,7 @@ services:
       build:
         context: ./backend
         dockerfile: Dockerfile.database
+      image: viniciusnypdev/campus-rater-database
       restart: always
       env_file: ./.env
       environment:
@@ -33,6 +34,7 @@ services:
       - "5000:80"
     networks:
       - campus-rater-network
+    image: viniciusnypdev/campus-rater-server
 
   client: 
     build: ./frontend
@@ -49,6 +51,7 @@ services:
       - "8000:80"
     networks:
       - campus-rater-network
+    image: viniciusnypdev/campus-rater-client
 
 volumes:
   database_data:

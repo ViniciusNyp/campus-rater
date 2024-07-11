@@ -8,4 +8,3 @@ const envSchema = z.object({
 });
 
 export const env = envSchema.passthrough().parse(process.env);
-console.log(env);
