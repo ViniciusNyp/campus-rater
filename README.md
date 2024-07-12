@@ -24,7 +24,7 @@ Welcome to Campus Rater! Campus Rater is a forum-like community-driven education
 
 ## Docker images
 
-- [viniciusnypdev/campus-rater-client](https://hub.docker.com/repository/docker/viniciusnypdev/campus-rater-client)
-- [viniciusnypdev/campus-rater-server](https://hub.docker.com/repository/docker/viniciusnypdev/campus-rater-server)
-- [viniciusnypdev/campus-rater-database](https://hub.docker.com/repository/docker/viniciusnypdev/campus-rater-database)
+- **Client**: [viniciusnypdev/campus-rater-client](https://hub.docker.com/repository/docker/viniciusnypdev/campus-rater-client)
+- **API**: [viniciusnypdev/campus-rater-server](https://hub.docker.com/repository/docker/viniciusnypdev/campus-rater-server)
+- **Database**: [viniciusnypdev/campus-rater-database](https://hub.docker.com/repository/docker/viniciusnypdev/campus-rater-database)
 
