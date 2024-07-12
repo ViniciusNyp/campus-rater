@@ -21,3 +21,10 @@ Welcome to Campus Rater! Campus Rater is a forum-like community-driven education
 - **Front-End**: [Node.js](https://nodejs.org/), [TypeScript](https://www.typescriptlang.org/), [pnpm](https://pnpm.io/), [Vite](https://vitejs.dev/), [React](https://react.dev/), [shadcn/ui](https://ui.shadcn.dev/), [react-i18next](https://react.i18next.com/), [react-lucide](https://lucide.dev/docs/lucide-react), [Transmart](https://transmart.com/), [react-query](https://react-query.tanstack.com/), [TailwindCSS](https://tailwindcss.com/), [Less](https://lesscss.org/), [PostCSS](https://postcss.org/), [react-router-dom](https://reactrouter.com/en/main), [ESLint](https://eslint.org/)/[Stylelint](https://stylelint.io/), [Prettier](https://prettier.io/), [SVGR](https://react-svgr.com/), [EditorConfig](https://editorconfig.org/), [Husky](https://typicode.github.io/husky/)/[lint-staged](https://github.com/okonet/lint-staged), [Commitlint](https://commitlint.js.org/).
 
 - **Infraestructure**: [Docker](https://www.docker.com/), [PostgreSQL](https://www.postgresql.org/).
+
+## Docker images
+
+- [viniciusnypdev/campus-rater-client](https://hub.docker.com/repository/docker/viniciusnypdev/campus-rater-client)
+- [viniciusnypdev/campus-rater-server](https://hub.docker.com/repository/docker/viniciusnypdev/campus-rater-server)
+- [viniciusnypdev/campus-rater-database](https://hub.docker.com/repository/docker/viniciusnypdev/campus-rater-database)
+
